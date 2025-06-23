@@ -1,28 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Movie Recommender System 🎬</title>
-</head>
-<body style="font-family: sans-serif; max-width: 700px; margin: auto; padding: 20px;">
-    <h1>🎬 Movie Recommender System</h1>
-    
-    <form method="POST">
-        <label for="movie">Select a movie:</label><br>
-        <select name="movie" id="movie">
-            {% for movie in movie_list %}
-                <option value="{{ movie }}">{{ movie }}</option>
-            {% endfor %}
-        </select><br><br>
-        <input type="submit" value="Show Recommendation">
-    </form>
+    <meta charset="UTF-8">
+    <title>🎬 Movie Recommender System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-image: url("https://images.unsplash.com/photo-1505685296765-3a2736de412f?auto=format&fit=crop&w=1350&q=80");
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+        }
 
-    {% if recommendations %}
-        <h2>Top 5 Recommended Movies:</h2>
-        <ul>
-        {% for name in recommendations %}
-            <li>👉 {{ name }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
+        .container {
+            background: rgba(0, 0, 0, 0.75);
+            max-width: 700px;
+            margin: 80px auto;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        select {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 30px;
+            font-size: 16px;
+            background-color: #e50914;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #b0060f;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+
+        li {
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .recommendations h2 {
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Movie Recommender System</h1>
+
+        <form method="POST">
+            <select name="movie" required>
+                {% for movie in movie_list %}
+                    <option value="{{ movie }}">{{ movie }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <input type="submit" value="Show Recommendation">
+        </form>
+
+        {% if recommendations %}
+            <div class="recommendations">
+                <h2>Top 5 Recommended Movies:</h2>
+                <ul>
+                    {% for name in recommendations %}
+                        <li>👉 {{ name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>
